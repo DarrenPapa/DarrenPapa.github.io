@@ -14,12 +14,7 @@
         let page_display = document.getElementById("PAGE-DISPLAY");
         
         function fetch_file(repoUrl, filename) {
-            const match = repoUrl.match(/github\.com\/([^\/]+)\/([^\/]+)/);
-            if (!match) throw new Error("Invalid GitHub repo URL");
-        
-            const user = match[1];
-            const repo = match[2];
-            const rawUrl = `https://raw.githubusercontent.com/${user}/${repo}/master/${filename}`;
+            const rawUrl = `https://raw.githubusercontent.com/${repoUrl}/master/${filename}`;
         
             const xhr = new XMLHttpRequest();
             xhr.open("GET", rawUrl, false);
@@ -34,7 +29,7 @@
         }
 
         p = document.createChild("p");
-        p.textContent = fetch_file("https://github.com/DarrenPapa/dpl", "README.md");
+        p.textContent = fetch_file("DarrenPapa/dpl", "README.md");
         page_display.appendChild(p);
     </script>
 </html>
