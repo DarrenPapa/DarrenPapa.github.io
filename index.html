@@ -1,35 +1,57 @@
-<html lang="eng">
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         * {
             color: white;
-            background-color: grey;
+            background-color: #222222;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .title {
+            background-color: #2C3E50;
+            border-radius: 10px;
+            padding: 6px;
+            padding-left: 5px;
+        }
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+        #content {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #333;
+        }
+        a {
+            color: #1E90FF;
         }
     </style>
     <body>
         <h1>DuProL.dev</h1>
         <p>Currently under work!</p>
-        <div id="PAGE-DISPLAY"></div>
+        <h2 class="title">test</h2>
+        <div id="content"></div>
     </body>
-    <script>
-        let page_display = document.getElementById("PAGE-DISPLAY");
-        
-        function fetch_file(repoUrl, filename) {
-            const rawUrl = `https://raw.githubusercontent.com/${repoUrl}/refs/heads/master/${filename}`;
-        
-            const xhr = new XMLHttpRequest();
-            xhr.open("GET", rawUrl, false);
-            xhr.responseType = "blob";
-            xhr.send();
-        
-            if (xhr.status !== 200) {
-                throw new Error("Failed to fetch file: " + xhr.statusText);
-            }
-        
-            return xhr.response;
-        }
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-        p = document.createChild("p");
-        p.textContent = fetch_file("DarrenPapa/dpl", "README.md");
-        page_display.appendChild(p);
+    <script>
+        // GitHub raw file URL (replace with your file's raw URL)
+        const url = 'https://raw.githubusercontent.com/DarrenPapa/dpl/refs/heads/master/README.md';
+        
+        // Fetch the file
+        fetch(url)
+          .then(response => response.text())
+          .then(markdown => {
+            // Render the markdown into HTML
+            const htmlContent = marked(markdown);
+        
+            // Display the rendered content in a div (with ID 'content')
+            document.getElementById('content').innerHTML = htmlContent;
+          })
+          .catch(error => {
+            console.error('Error fetching the file:', error);
+          });
     </script>
 </html>
