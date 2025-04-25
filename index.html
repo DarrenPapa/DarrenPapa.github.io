@@ -14,7 +14,7 @@
         let page_display = document.getElementById("PAGE-DISPLAY");
         
         function fetch_file(repoUrl, filename) {
-            const rawUrl = `https://raw.githubusercontent.com/${repoUrl}refs/heads/master/${filename}`;
+            const rawUrl = `https://raw.githubusercontent.com/${repoUrl}/refs/heads/master/${filename}`;
         
             const xhr = new XMLHttpRequest();
             xhr.open("GET", rawUrl, false);
