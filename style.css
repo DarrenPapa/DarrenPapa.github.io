@@ -45,6 +45,9 @@
             border-radius: 10px;
             display: flex;
         }
+        code {
+            display: hidden;
+        }
         a {
             color: #1E90FF;
         }
