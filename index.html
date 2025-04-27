@@ -50,8 +50,6 @@
           
             const md = markdown.split("---", 2);
             // Render the markdown into HTML
-            alert(md.length);
-            alert(md[2]);
             if (md[1]) {const htmlContent = marked(md[1]);
             document.getElementById('content').innerHTML = htmlContent;}
             else{const htmlContent = marked(md[0]);
