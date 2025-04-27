@@ -176,14 +176,43 @@ dpl compile [file.dpl]
     Compiles the given file.
 dpl help
     Prints help text
+dpl package install username reponame branch include_branch_name
+    Installs the package.
+    include_branch_name can be "true" or "false".
+    When include_branch_namenis true the package name will be "package-branch"
+    Example: "some_pack-1.4.8"
+dpl package installto: path username reponame branch include_branch_name
+    Installs the package in the specified path.
+    include_branch_name can be "true" or "false".
+    When include_branch_namenis true the package name will be "package-branch"
+    Example: "some_pack-1.4.8"
+dpl package remove package_name
+    Deletes package.
         </pre>
         
         <h2 id="flags">Flags</h2>
         <pre id="content">
-safe err_var function args...
-scatch [!err_var return_value] function args...
-smcatch [!err_var return_value]  function args...
-# if the function is successful the err_var is nil
+-init-time
+    Show initialization time.
+-skip-non-essential
+    Skip REPL modules.
+-disable-auto-complete
+    Disable REPL auto-complete.
+-no-cffi
+    Disable CFFI.
+-no-lupa
+    Disable LuaJIT.
+-dry-run
+    Dry run the CLI.
+-p (also -cprofile)
+    Profile the interpreter using cProfile
+-order-profile=...
+    Order the output of "-cprofile"
+-simple-run [file]
+    Skips initiating the CLI amd runs the file.
+    This is convinient for files that do not take arguments,
+    but needs to run fast.
+    Recommended to use with "-skip-non-essential"
         </pre>
         
 
