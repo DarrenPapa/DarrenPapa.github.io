@@ -37,7 +37,9 @@
         <a href="#functions">Functions</a><br>
         <a href="#cond">Conditionals</a><br>
         <a href="#expressions">Expressions</a><br>
-        <a href="#errors">Errors</a>
+        <a href="#errors">Errors</a><br>
+        <a href="#cmd">Commands</a><br>
+        <a href="#flags">Flags</a>
         <h2 class="title">How to Program in DPL</h2>
         <h2 id="hello_world">Hello World!</h2>
         <pre id="content">
@@ -155,6 +157,28 @@ person.greet "Carl"
         </pre>
         
         <h2 id="error">Errors</h2>
+        <pre id="content">
+safe err_var function args...
+scatch [!err_var return_value] function args...
+smcatch [!err_var return_value]  function args...
+# if the function is successful the err_var is nil
+        </pre>
+        
+        <h1>CLI</h1>
+        
+        <h2 id="cmd">Commands</h2>
+        <pre id="content">
+dpl run [file.dpl] arg1 arg2 ... argN
+    Runs the given file.
+dpl rc [file.cdpl] arg1 arg2 ... argN
+    Runs the compiled dpl script.
+dpl compile [file.dpl]
+    Compiles the given file.
+dpl help
+    Prints help text
+        </pre>
+        
+        <h2 id="flags">Flags</h2>
         <pre id="content">
 safe err_var function args...
 scatch [!err_var return_value] function args...
