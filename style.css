@@ -39,16 +39,6 @@
             padding: 6px;
             padding-left: 5px;
         }
-        #content > pre {
-            color: #434343;
-            background-color: #434343;
-            border-radius: 10px;
-            display: flex;
-        }
-        #content > code {
-            background-color: #434343;
-            border-radius: 10px;
-        }
         a {
             color: #1E90FF;
         }
