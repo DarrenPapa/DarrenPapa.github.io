@@ -43,6 +43,10 @@
             background-color: #434343;
             border-radius: 10px;
         }
+        #content > code {
+            background-color: #434343;
+            border-radius: 10px;
+        }
         a {
             color: #1E90FF;
         }
