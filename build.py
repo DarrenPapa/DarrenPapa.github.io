@@ -7,7 +7,7 @@ with open("lib_template.html") as input:
             lib, name = i.split(".", 1)
             name, _ = name.rsplit(".", 1)
             res.append(f'<a href="./libs/{i}">{lib}/{name}</a><br>')
-        output.write(input.read().replace("<!--STYLE-->", '''
+        output.write(t:=input.read().replace("<!--STYLE-->", '''
     <style>
         * {
             color: white;
@@ -36,3 +36,4 @@ with open("lib_template.html") as input:
             overflow: scroll;
         }
     </style>''').replace("<!--FILES-->", "\n"+"\n".join(res)+"\n"))
+    print(t)
