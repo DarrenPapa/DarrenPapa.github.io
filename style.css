@@ -45,6 +45,7 @@
             display: flex;
         }
         #content > code {
+            color: #434343;
             background-color: #434343;
             border-radius: 10px;
             display: flex;
