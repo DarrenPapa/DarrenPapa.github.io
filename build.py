@@ -6,4 +6,4 @@ with open("lib_template.html") as input:
         for i in os.listdir("libs"):
             lib, name = i.split(".", 1)
             res.append('<a href="./libs/{i}">{lib}/{name}</a><br>')
-        output.write(input.read().replace("<!--FILE-->", "\n"+"\n".join(res)+"\n"))
+        output.write(input.read().replace("<!--FILES-->", "\n"+"\n".join(res)+"\n"))
