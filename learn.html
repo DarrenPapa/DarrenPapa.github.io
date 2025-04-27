@@ -20,6 +20,12 @@
         h1, h2 {
             margin-bottom: 20px;
         }
+        pre {
+            background-color: #333333;
+            border-radius: 10px;
+            padding: 6px;
+            overflow: scroll;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <body>
@@ -28,7 +34,10 @@
         <a href="#hello_world">Hello world</a><br>
         <a href="#variables">Using Variables</a><br>
         <a href="#fmt_str">Formatted Strings</a><br>
-        <a href="#functions">Functions</a>
+        <a href="#functions">Functions</a><br>
+        <a href="#cond">Conditionals</a><br>
+        <a href="#expressions">Expressions</a><br>
+        <a href="#errors">Errors</a>
         <h2 class="title">How to Program in DPL</h2>
         <h2 id="hello_world">Hello World!</h2>
         <pre id="content">
@@ -53,6 +62,7 @@ io:println [fast-format "${hello_world}"]
         
         <h2 id="functions">Functions</h2>
         <pre id="content">
+# fn fn_name [!arg1 arg2 ... argN]
 fn greet [!name]
     io:println 'Hello ${name}!'
 end
@@ -60,16 +70,96 @@ end
 greet "Darren"
         </pre>
         
-        <h2 id="hello_world">Hello World!</h2>
+        <h2 id="cond">Conditionals</h2>
         <pre id="content">
-&use {std/text_io.py}
-io:println "Hello, world!"
+if cond
+    ... true block
+end
+
+match value
+    as alias
+    with literal
+        ... body
+        ... fallthrough
+    end
+    case cond
+        ... body
+        ... fallthrough
+    end
+    default
+        ... body
+    end
+end
         </pre>
         
-        <h2 id="hello_world">Hello World!</h2>
+        <h2 id="loops">Loops</h2>
+        <pre id="content">
+loop
+    ... loops indefinitely
+end
+
+loop num
+    ... loops 'num' number of types
+end
+
+for name in iterable
+    ... loops through the given iterable
+end
+
+while cond
+    ... loop while cond stays true
+end
+        </pre>
+        
+        <h2 id="classes">Classes</h2>
         <pre id="content">
 &use {std/text_io.py}
-io:println "Hello, world!"
+
+object Person
+method  Person.new [!name]
+    new :self tmp
+    set tmp.name :name
+    return :tmp
+end
+method Person.greet [!name]
+    io:println 'Hello ${name} Im ${self.name}'
+end
+
+catch [!person] Person.new "Andrew"
+person.greet "Carl"
+        </pre>
+        
+        <h2 id="expressions">Expressions</h2>
+        <pre id="content">
+...[ v1 + v2 ]
+...[ v1 - v2 ]
+...[ v1 * v2 ]
+...[ v1 / v2 ]
+...[ v1 ** v2 ]
+...[ v1 / v2 ]
+...[ v1 // v2 ]
+...[ v1 % v2 ]
+...[ v1 == v2 ]
+...[ v1 != v2 ]
+...[ v1 &gt;= v2 ]
+...[ v1 &lt;= v2 ]
+...[ list&lt;index&gt; ]
+...[ v1 in v2 ]
+...[ v1 and v2 ]
+...[ v1 or v2 ]
+...[ not v1 ]
+...[! item1 item2 ... itemN ]
+...[pyobject@method]
+...[key->value]
+...[dict [key->value] [key1->value1] ...]
+        </pre>
+        
+        <h2 id="error">Errors</h2>
+        <pre id="content">
+safe err_var function args...
+scatch [!err_var return_value] function args...
+smcatch [!err_var return_value]  function args...
+# if the function is successful the err_var is nil
         </pre>
         
 
