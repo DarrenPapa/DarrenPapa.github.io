@@ -4,6 +4,9 @@
         * {
             color: white;
             background-color: #222222;
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow: hide;
         }
         body {
             font-family: Arial, sans-serif;
@@ -22,7 +25,7 @@
             margin-top: 20px;
             padding: 15px;
             border-radius: 8px;
-            background-color: #333;
+            background-color: #222222;
         }
         a {
             color: #1E90FF;
@@ -34,7 +37,7 @@
         <h2 class="title">test</h2>
         <div id="content"></div>
     </body>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@2.0.0/lib/marked.min.js"></script>
 
     <script>
         // GitHub raw file URL (replace with your file's raw URL)
@@ -51,6 +54,7 @@
             document.getElementById('content').innerHTML = htmlContent;
           })
           .catch(error => {
+            alert(error);
             console.error('Error fetching the file:', error);
           });
     </script>
