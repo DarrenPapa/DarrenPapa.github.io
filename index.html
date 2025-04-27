@@ -25,7 +25,22 @@
             margin-top: 20px;
             padding: 15px;
             border-radius: 8px;
-            background-color: #222222;
+            background-color: #333333;
+        }
+        #content > * {
+            background-color: #333333;
+        }
+        #content > h1 {
+            background-color: #2C3E50;
+            border-radius: 10px;
+            padding: 6px;
+            padding-left: 5px;
+        }
+        #content > h2 {
+            color: #FF8C00;
+            border-radius: 10px;
+            padding: 6px;
+            padding-left: 5px;
         }
         a {
             color: #1E90FF;
@@ -48,7 +63,7 @@
           .then(response => response.text())
           .then(markdown => {
           
-            const md = markdown.split("---", 2);
+            const md = markdown.split("Most recent at top.", 2);
             // Render the markdown into HTML
             if (md[1]) {const htmlContent = marked(md[1]);
             document.getElementById('content').innerHTML = htmlContent;}
