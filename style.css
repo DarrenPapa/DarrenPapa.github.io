@@ -27,11 +27,22 @@
         #content > * {
             background-color: #333333;
         }
-        h2 {
+        #content > h1 {
+            background-color: #2C3E50;
+            border-radius: 10px;
+            padding: 6px;
+            padding-left: 5px;
+        }
+        #content > h2 {
             color: #FF8C00;
             border-radius: 10px;
             padding: 6px;
             padding-left: 5px;
+        }
+        #content > p {
+            color: #434343;
+            background-color: #434343;
+            border-radius: 10px;
         }
         a {
             color: #1E90FF;
