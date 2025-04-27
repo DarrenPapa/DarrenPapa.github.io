@@ -42,10 +42,12 @@
         #content > pre {
             background-color: #434343;
             border-radius: 10px;
+            display: flex;
         }
         #content > code {
             background-color: #434343;
             border-radius: 10px;
+            display: flex;
         }
         a {
             color: #1E90FF;
