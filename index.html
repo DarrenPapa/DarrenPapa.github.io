@@ -60,23 +60,5 @@
                 alert(error);
                 console.error('Error fetching the file:', error);
             });
-
-        // Function to handle click event and copy text
-        function copyTextOnClick(elem) {
-            navigator.clipboard.writeText(elem.textContent)
-                .then(() => {
-                    console.log('Text copied!');
-                })
-                .catch(err => {
-                    console.error('Failed to copy text: ', err);
-                });
-        }
-
-        // Add event listeners for both 'code' and 'pre' elements
-        ['code', 'pre'].forEach(tag => {
-            document.querySelectorAll(tag).forEach(elem => {
-                elem.addEventListener('click', () => copyTextOnClick(elem));
-            });
-        });
     </script>
 </html>
