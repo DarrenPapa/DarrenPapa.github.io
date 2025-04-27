@@ -36,4 +36,3 @@ with open("lib_template.html") as input:
             overflow: scroll;
         }
     </style>''').replace("<!--FILES-->", "\n"+"\n".join(res)+"\n"))
-    print(t)
