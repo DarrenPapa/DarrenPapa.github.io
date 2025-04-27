@@ -54,6 +54,7 @@ io:println "Hello, world!"
 &use {std/text_io.py}
 set this 90
 io:println :this
+del this
         </pre>
         
         <h2 id="fmt_str">Formatted Strings</h2>
@@ -191,6 +192,19 @@ safe err_var function args...
 scatch [!err_var return_value] function args...
 smcatch [!err_var return_value]  function args...
 # if the function is successful the err_var is nil
+        </pre>
+        
+        <h2 id="tc">Type Checking</h2>
+        <pre id="content">
+# enable the type checker
+set _meta.debug.type_checker true
+# true to ignore missing type signatures
+set _meta.debug.TC_DEFAULT_WHEN_NOT_FOUND false
+
+tc_register "func_name :: type1 type2"
+tc_register "@ranged variadic_any :: any ..."
+tc_register "%define_no_type"
+tc_register "specific_num_args[2] :: str int"
         </pre>
         
         <h2 class="title">CLI</h2>
