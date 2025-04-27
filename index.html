@@ -3,9 +3,6 @@
         * {
             color: white;
             background-color: #222222;
-            word-wrap: break-word;
-            word-break: break-word;
-            overflow: hide;
         }
         body {
             font-family: Arial, sans-serif;
@@ -19,6 +16,17 @@
         }
         h1, h2 {
             margin-bottom: 20px;
+        }
+        pre {
+            background-color: #333333;
+            border-radius: 10px;
+            padding: 3px;
+            overflow: scroll;
+        }
+        code {
+            border-radius: 10px;
+            padding: 3px;
+            background-color: #333333;
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,21 +49,34 @@
         
         // Fetch the file
         fetch(url)
-          .then(response => response.text())
-          .then(markdown => {
-          
-            const md = markdown.split("Most recent at top.", 2);
-            // Render the markdown into HTML
-            if (md[1]) {const htmlContent = marked(md[1]);
-            document.getElementById('content').innerHTML = htmlContent;}
-            else{const htmlContent = marked(md[0]);
-            document.getElementById('content').innerHTML = htmlContent;}
-        
-            // Display the rendered content in a div (with ID 'content')
-          })
-          .catch(error => {
-            alert(error);
-            console.error('Error fetching the file:', error);
-          });
+            .then(response => response.text())
+            .then(markdown => {
+                const md = markdown.split("Most recent at top.", 2);
+                // Render the markdown into HTML
+                const htmlContent = marked(md[1] || md[0]);
+                document.getElementById('content').innerHTML = htmlContent;
+            })
+            .catch(error => {
+                alert(error);
+                console.error('Error fetching the file:', error);
+            });
+
+        // Function to handle click event and copy text
+        function copyTextOnClick(elem) {
+            navigator.clipboard.writeText(elem.textContent)
+                .then(() => {
+                    console.log('Text copied!');
+                })
+                .catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+        }
+
+        // Add event listeners for both 'code' and 'pre' elements
+        ['code', 'pre'].forEach(tag => {
+            document.querySelectorAll(tag).forEach(elem => {
+                elem.addEventListener('click', () => copyTextOnClick(elem));
+            });
+        });
     </script>
 </html>

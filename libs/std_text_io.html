@@ -30,11 +30,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <body>
         <h1>DuProL.dev</h1>
-        <a href="/">Go back...</a><br><br>
-
+        <a href="../lib.html">Go back...</a><br><br>
+        <h2 class="title">std/text_io.py</h2>
+        <p>Type signatures</p>
         <pre>
-io:println :: any ...
-io:print :: any ...
+@ranged io:println :: any ...
+@ranged io:print :: any ...
+#           prompt var
+io:input :: str str
+# just prompt
+io:input[1] :: str
+# avoids repr printing logic
+@ranged io:rawprintln :: any ...
+@ranged io:rawprint :: any ...
+# can be used for printing ansi codes
+@ranged io:rawoutput :: any ...
+# can be used for redirecting output
+@ranged io:setoutputfile :: TextIOWrapper
+# Use to update output stream. Python loves buffering output.
+%flush
         </pre>
 
         <p>(c) 2024 Darren Papa</p>
