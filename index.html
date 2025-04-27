@@ -34,7 +34,7 @@
     <body>
         <h1>DuProL.dev</h1>
         <p>Currently under work!</p>
-        <h2 class="title">test</h2>
+        <h2 class="title">Updates</h2>
         <div id="content"></div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/marked@2.0.0/lib/marked.min.js"></script>
@@ -47,11 +47,17 @@
         fetch(url)
           .then(response => response.text())
           .then(markdown => {
+          
+            const md = markdown.split("---", 2);
             // Render the markdown into HTML
-            const htmlContent = marked(markdown);
+            alert(md.length);
+            alert(md[2]);
+            if (md[1]) {const htmlContent = marked(md[1]);
+            document.getElementById('content').innerHTML = htmlContent;}
+            else{const htmlContent = marked(md[0]);
+            document.getElementById('content').innerHTML = htmlContent;}
         
             // Display the rendered content in a div (with ID 'content')
-            document.getElementById('content').innerHTML = htmlContent;
           })
           .catch(error => {
             alert(error);
