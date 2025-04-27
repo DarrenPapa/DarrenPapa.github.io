@@ -1,0 +1,8 @@
+import os
+
+with open("lib_template.html") as input:
+    with open("lib.html", "w") as output:
+        for i in os.listdir("libs"):
+            lib, name = i.split(".", 1)
+            res.append('<a href="./libs/{i}">{lib}/{name}</a><br>')
+        input.read().replace("<!--FILE-->", "\n"+"\n".join(res)+"\n")
