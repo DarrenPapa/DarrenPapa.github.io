@@ -38,6 +38,9 @@
         <a href="#cond">Conditionals</a><br>
         <a href="#expressions">Expressions</a><br>
         <a href="#errors">Errors</a><br>
+        <a href="#tc">Type Checking</a><br>
+        <a href="#sam">Switches and Matching</a><br>
+        <a href="#intern">Internals</a><br>
         <a href="#comments">Comments</a><br>
         <a href="#classes">Classes</a><br>
         <a href="#cmd">Commands</a><br>
@@ -205,6 +208,72 @@ tc_register "func_name :: type1 type2"
 tc_register "@ranged variadic_any :: any ..."
 tc_register "%define_no_type"
 tc_register "specific_num_args[2] :: str int"
+        </pre>
+        
+        <h2 id="sam">Switches and Matching</h2>
+        <pre id="content">
+&use {std/text_io.py}
+
+io:input "Name: " name
+
+set users .set
+
+# Cascading with explicit control through fallthrough keyword
+match :name
+    # semantically readen as `match with "admin"`
+    with "admin"
+        fallthrough
+    end
+    with "superuser"
+        io:println "Logged in as admin"
+    end
+    # semantically readen as `match case cond`
+    case [:name in :users]
+        io:println "Welcome!"
+    end
+    default
+        io:println 'User ${user} is not logged in!'
+        io:input "Register? [y] " reg
+        if [:reg == "y"]
+            pass [:users@add :name]
+        end
+    end
+end
+
+# compiles into
+# _intern.switch {"test":..., "darren":..., None:...} :value
+# doesnt allow fallthroughs since its not a real
+# jump table.
+io:input "Name: " value
+switch :value
+    case test
+        io:println "Test!"
+    end
+    case darren
+        io:println "Hello Creator, welcome back!"
+    end
+    # also case PyNone
+    default
+        io:println 'Hello ${value}!'
+    end
+end
+# internally
+# _intern.switch is just fetching the value and running it.
+# no comparisons at the cost of no fallthroughs.
+# Switch statements only uses literals.
+# No conditions unlike the match statement.
+        </pre>
+        
+        <h2 id="intern">Internals</h2>
+        <pre id="content">
+# Might be used by instructions
+# Currently the only instruction used is _intern.switch
+_intern.get_index basic_label
+_intern.switch [[code blocks here]] value
+_intern.jump :basic_label
+
+# theres also another syntax:
+_intern.jump index cond
         </pre>
         
         <h2 class="title">CLI</h2>
