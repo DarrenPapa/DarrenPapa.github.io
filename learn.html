@@ -43,6 +43,7 @@
         <a href="#intern">Internals</a><br>
         <a href="#comments">Comments</a><br>
         <a href="#classes">Classes</a><br>
+        <a href="#incdir">Including Directories</a><br>
         <a href="#cmd">Commands</a><br>
         <a href="#flags">Flags</a>
         <h2 class="title">How to Program in DPL</h2>
@@ -55,9 +56,17 @@ io:println "Hello, world!"
         <h2 id="variables">Using Variables</h2>
         <pre id="content">
 &use {std/text_io.py}
-set this 90
+set this = 90
 io:println :this
 del this
+
+dict my_person
+    set name => "Andrew"
+    set age  => 90
+end
+
+# {'name':'Andrew', 'age':90}
+io:println :my_person
         </pre>
         
         <h2 id="fmt_str">Formatted Strings</h2>
@@ -153,7 +162,7 @@ is valid as well --
 object Person
 method  Person.new [!name]
     new :self tmp
-    set tmp.name :name
+    set tmp.name = :name
     return :tmp
 end
 method Person.greet [!name]
@@ -187,6 +196,22 @@ person.greet "Carl"
 ...[pyobject@method]
 ...[key->value]
 ...[dict [key->value] [key1->value1] ...]
+
+# "..." when used as an instruction becomes a comment.
+... gets ignored!
+# but when used as an expression
+set elipsis = ...
+# becomes the elipsis type.
+
+# Warning: Function 'func' is empty.
+fn func
+    ...
+end
+
+# Doesnt complain.
+fn func
+    pass
+end
         </pre>
         
         <h2 id="error">Errors</h2>
@@ -274,6 +299,31 @@ _intern.jump :basic_label
 
 # theres also another syntax:
 _intern.jump index cond
+        </pre>
+        
+        <h2 id="incdir">Including Directories</h2>
+        <p>Make sure to have an `include-[lang].txt` in the directory where lang is the language.</p>
+        <dl>
+            <dt>include-py.txt</dt>
+            <dd>For python.</dd>
+            <dt>include-dpl.txt</dt>
+            <dd>For dpl.</dd>
+            <dt>include-lua.txt</dt>
+            <dd>For lua scripts.</dd>
+        </dl>
+        <pre id="content">
+# example "include-py.txt"
+
+# Comments can be used here.
+#:this will be printed!
+#:useful for warnings and such.
+
+# will be imported in the given order.
+lib1.py
+lib2.py
+lib3.py
+# similar to "&use {.../lib4.py} as alias"
+lib4.py => alias
         </pre>
         
         <h2 class="title">CLI</h2>
