@@ -74,25 +74,34 @@ io:println :my_person
 &use {std/text_io.py}
 set hello_world "Hello, world!"
 io:println '${hello_world}'
+# only encloses local scope
 io:println [fast-format "${hello_world}"]
         </pre>
         
         <h2 id="functions">Functions</h2>
         <pre id="content">
-# fn fn_name [!arg1 arg2 ... argN]
-fn greet [!name]
-    io:println 'Hello ${name}!'
+# fn fn_name(arg1 arg2 ... argN [var=default_value])
+fn greet(name, [greeter=Andrew])
+    io:println 'Hello ${name}, Im ${greeter}!'
 end
 
+# Hello Darren, Im Andrew!
 greet "Darren"
+# Hello Darren, Im Alex!
+greet "Darren" "Alex"
+greet "Darren" [greetor => "Alex"]
         </pre>
         
         <h2 id="cond">Conditionals</h2>
         <pre id="content">
+# simple if statement
 if cond
     ... true block
 end
 
+# DPL doesnt support elif or else if
+
+# supports both literals and conditions
 match value
     as alias
     with literal
@@ -105,6 +114,16 @@ match value
     end
     default
         ... body
+    end
+end
+
+# faster but doesnt have fallthroughs
+switch value
+    case literal
+        ...
+    end
+    default
+        ...
     end
 end
         </pre>
@@ -120,6 +139,10 @@ loop num
 end
 
 for name in iterable
+    ... loops through the given iterable
+end
+
+for index, name in iterable
     ... loops through the given iterable
 end
 
@@ -160,16 +183,16 @@ is valid as well --
 &use {std/text_io.py}
 
 object Person
-method  Person.new [!name]
+method  Person.new(name)
     new :self tmp
     set tmp.name = :name
     return :tmp
 end
-method Person.greet [!name]
+method Person.greet(name)
     io:println 'Hello ${name} Im ${self.name}'
 end
 
-catch [!person] Person.new "Andrew"
+catch (person) Person.new "Andrew"
 person.greet "Carl"
         </pre>
         
